@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 const userTeacherModel = require("../../models/teacher/user.teacher.model");
+const { generateJWT } = require('../../helpers/jwt');
 
 const createTeacher = async (req, res) => {
 
@@ -25,6 +26,9 @@ const createTeacher = async (req, res) => {
 
     await user.save();
 
+    // Generar JWT
+    const token = await generateJWT( user.id, user.name );
+
     res.status(201).json({
       ok: true,
       uid: user.id,
@@ -33,6 +37,7 @@ const createTeacher = async (req, res) => {
       lastName: user.lastName,
       email: user.email,
       password: user.password,
+      token
     });
 
   } catch (error) {
@@ -69,12 +74,14 @@ const loginTeacher = async (req, res) => {
       });
     }
 
-    //Generar JWT
+    // Generar JWT
+    const token = await generateJWT( user.id, user.name );
 
     res.json({
       ok: true,
       uid: user.id,
       name: user.name,
+      token
     });
   
   } catch (error) {
@@ -86,10 +93,17 @@ const loginTeacher = async (req, res) => {
   }
 };
 
-const renewToken = (req, res) => {
+const renewToken = async(req, res) => {
+
+  const { uid, name } = req;
+
+  const token = await generateJWT( uid, name );
+
   res.json({
     ok: true,
-    msg: "renew",
+    uid,
+    name,
+    token
   });
 };
 
