@@ -28,13 +28,8 @@ const updateStudent = async (req, res) => {
             }); 
         }
 
-        //Encriptacion de contraseña
-        const salt = bcrypt.genSaltSync();
-        password = bcrypt.hashSync(password, salt);
-
         const newStudent = {
-            ...req.body,
-            password
+            ...req.body
         }
 
         //new: true es para que traiga al estudiante actualizado al momento en postman
@@ -49,7 +44,7 @@ const updateStudent = async (req, res) => {
         console.log(error);
         res.status(500).json({
             ok:false,
-            msg: 'Please contact the administrator'
+            msg: 'Please contact to the administrator'
         });
     }
 
