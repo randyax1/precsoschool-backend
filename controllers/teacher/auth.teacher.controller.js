@@ -43,7 +43,7 @@ const createTeacher = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       ok: false,
-      msg: "Porfavor contacte al administrador.",
+      msg: "Please contact the administrator.",
     });
     
   }
@@ -88,7 +88,7 @@ const loginTeacher = async (req, res) => {
   
     res.status(500).json({
       ok: false,
-      msg: "Porfavor contacte al administrador.",
+      msg: "Please contact the administrator.",
     });
   }
 };
@@ -110,5 +110,5 @@ const renewToken = async(req, res) => {
 module.exports = {
   createTeacher,
   loginTeacher,
-  renewToken,
+  renewToken
 };

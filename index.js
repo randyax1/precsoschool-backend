@@ -11,7 +11,7 @@ const app = express();
 dbConnection();
 
 //CORS
-app.use(cors());
+app.use(cors() );
 
 //Lectura y parseo del body
 app.use( express.json() );
@@ -20,6 +20,12 @@ app.use( express.json() );
 app.use('/api/auth/teacher', require('./routes/teacher/auth.teacher') );
 
 app.use('/api/auth/student', require('./routes/student/auth.student') );
+
+app.use('/api/courses', require('./routes/course') );
+
+app.use('/api/teachers', require('./routes/teacher') );
+
+app.use('/api/students', require('./routes/student') );
 
 //Escuchar peticiones
 app.listen(process.env.PORT, () => {

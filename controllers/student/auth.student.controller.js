@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 
 const userStudentModel = require("../../models/student/user.student.model");
+const { generateJWT } = require("../../helpers/jwt");
 
 const createStudent = async (req, res) => {
 
@@ -25,6 +26,9 @@ const createStudent = async (req, res) => {
 
     await user.save();
 
+    // Generar JWT
+    const token = await generateJWT( user.id, user.name );
+
     res.status(201).json({
       ok: true,
       uid: user.id,
@@ -33,11 +37,12 @@ const createStudent = async (req, res) => {
       lastName: user.lastName,
       email: user.email,
       password: user.password,
+      token
     });
   } catch (error) {
     res.status(500).json({
       ok: false,
-      msg: "Porfavor contacte al administrador.",
+      msg: "Please contact the administrator.",
     });
   }
 };
@@ -67,24 +72,33 @@ const loginStudent = async(req, res) => {
     }
 
     //Generar JWT
+    const token = await generateJWT( user.id, user.name );
 
     res.json({
       ok: true,
       uid: user.id,
       name: user.name,
+      token
     });
   } catch (error) {
     res.status(500).json({
       ok: false,
-      msg: "Porfavor contacte al administrador.",
+      msg: "Please contact the administrator.",
     });
   }
 };
 
-const renewToken = (req, res) => {
+const renewToken = async(req, res) => {
+
+  const { uid, name } = req;
+
+  const token = await generateJWT( uid, name );
+
   res.json({
     ok: true,
-    msg: "renew",
+    uid,
+    name,
+    token
   });
 };
 
