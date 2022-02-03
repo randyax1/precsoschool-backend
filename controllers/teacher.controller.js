@@ -28,13 +28,8 @@ const getTeachers = async (req, res) => {
         });
       }
 
-      //Encriptacion contraseña
-      const salt = bcrypt.genSaltSync();
-      password = bcrypt.hashSync(password, salt);
-
       const newTeacher = {
-        ...req.body,
-        password
+        ...req.body
       }
 
        //new: true es para que traiga al profesor actualizado al momento en postman
