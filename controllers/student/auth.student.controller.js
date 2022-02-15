@@ -14,7 +14,7 @@ const createStudent = async (req, res) => {
     if (user) {
       return res.status(400).json({
         ok: false,
-        msg: "Correo ya registrado anteriormente.",
+        msg: "The email already exists.",
       });
     }
 
@@ -57,7 +57,7 @@ const loginStudent = async(req, res) => {
     if (!user) {
       return res.status(400).json({
         ok: false,
-        msg: "Usuario o contraseña no son correctos.",
+        msg: "The user or password are incorrect.",
       });
     }
 
@@ -67,7 +67,7 @@ const loginStudent = async(req, res) => {
     if (!validPassword) {
       return res.status(400).json({
         ok: false,
-        msg: "Contraseña incorrecta.",
+        msg: "Password incorrect.",
       });
     }
 

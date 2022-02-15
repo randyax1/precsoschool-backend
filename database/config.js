@@ -9,11 +9,11 @@ const dbConnection = async() => {
             useUnifiedTopology: true
         });
 
-        console.log('Conectado a BD');
+        console.log('Connected to BD');
         
     } catch (error) {
         console.log(error);
-        throw new Error('Error a la hora de iniciar la base de datos.');
+        throw new Error('Error starting the database.');
     }
 }
 

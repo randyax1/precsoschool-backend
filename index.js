@@ -23,6 +23,8 @@ app.use('/api/auth/student', require('./routes/student/auth.student') );
 
 app.use('/api/courses', require('./routes/course') );
 
+app.use('/api/notes', require('./routes/note') );
+
 app.use('/api/teachers', require('./routes/teacher') );
 
 app.use('/api/students', require('./routes/student') );
