@@ -7,7 +7,7 @@ const { isDate } = require('../helpers/isDate');
 const { fieldValidator } = require('../middlewares/field-validator');
 const { validateJWT } = require('../middlewares/jwt-validator');
 
-//Todos los endpoints pasaran por la validcion de JWT
+//Todos los endpoints pasaran por la validacion de JWT
 router.use( validateJWT );
 
 router.post('/',

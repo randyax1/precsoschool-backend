@@ -7,4 +7,4 @@ const courseSchema = Schema({
     end: { type: Date, required: true },
 });
 
-module.exports = model('course', courseSchema );
+module.exports = model( 'course', courseSchema );
